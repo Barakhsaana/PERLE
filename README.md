@@ -1,4 +1,5 @@
-# Perle
+# Policy-Enhanced Reinforcement Learning Model for *De Novo* RNA Design
+**PERLE** (**P**olicy-**E**nhanced **R**einforcement **L**earning Model for *De Novo* RNA D**E**sign)
 
 ## Abstract
 
@@ -20,15 +21,15 @@ RNA sequence design aims to design RNA sequences that adopt a desired structure,
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Perle.git
-cd Perle
+git clone https://github.com/Barakhsaana/PERLE/.git
+cd PERLE
 ```
 
 Create and activate a Python environment:
 
 ```bash
-conda create -n perle python=3.10 -y
-conda activate perle
+conda create -n PERLE python=3.10 -y
+conda activate PERLE
 ```
 
 Install the required Python packages:
@@ -37,13 +38,11 @@ Install the required Python packages:
 pip install torch numpy forgi
 ```
 
-Depending on your repository layout, you may also need to make sure that any local helper modules imported by Perle, such as `structure.py`, are available in the same directory or on your `PYTHONPATH`.
-
 For GPU acceleration, install the PyTorch build that matches your CUDA version and platform. CPU execution is possible, but training and candidate generation may be slower.
 
 ## Usage
 
-A minimal example is shown below:
+An example "run_1ANR.py" is shown below:
 
 ```python
 from Perle import PerleConfig, train_and_generate
@@ -62,6 +61,10 @@ cfg = PerleConfig(
 
 summary = train_and_generate(cfg)
 print(summary)
+```
+Then:
+```python
+python run_1ANR.py
 ```
 
 This example trains a Perle generator for the `1ANR` target, generates 10 candidate RNA sequences, optionally runs AlphaFold 3, and returns a summary dictionary containing generated sequences, RMSD values, and output CSV file paths.
@@ -119,17 +122,6 @@ After running `train_and_generate(cfg)`, Perle writes several output files:
 | `train_summary_<name>.csv` | Training metrics across rounds, including reward and base-pairing score. |
 | `detailed_summary_<name>.csv` | Generated sequences, RMSD values, sequence similarity, constraint satisfaction scores, dot-bracket comparisons, and AlphaFold 3-derived pair details. |
 
-The returned Python dictionary contains:
-
-```python
-{
-    "sequences": [...],
-    "rmsd_values": [...],
-    "time_csv": "time_<name>.csv",
-    "train_summary_csv": "train_summary_<name>.csv",
-    "detailed_summary_csv": "detailed_summary_<name>.csv",
-}
-```
 
 ## Running without AlphaFold 3
 
@@ -189,33 +181,3 @@ Please modify the AlphaFold 3 execution script and paths when running on a platf
 
 Please provide a valid target CIF file through `target_cif` if you want Perle to calculate RMSD after AlphaFold 3 prediction.
 
-## Example workflow
-
-```python
-from Perle import PerleConfig, train_and_generate
-
-cfg = PerleConfig(
-    name="my_rna_design",
-    seq_len=29,
-    target_str="GGCAGAUCUGAGCCUGGGAGCUCUCUGCC",
-    struct_str=".((((....((((......)))).)))).",
-    conserved_constraints={5: "A"},
-    unpair_constraints=[],
-    num_seq=20,
-    rounds=200,
-    run_af3=False,
-)
-
-summary = train_and_generate(cfg)
-
-for i, seq in enumerate(summary["sequences"], start=1):
-    print(f"Sequence {i}: {seq}")
-```
-
-## License
-
-Add your license information here.
-
-## Citation
-
-If you use Perle in your research, please cite the corresponding paper or repository.
