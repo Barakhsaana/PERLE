@@ -1,4 +1,6 @@
 # Policy-Enhanced Reinforcement Learning Model for *De Novo* RNA Design
+<img width="70%" height="auto" alt="image" src="https://github.com/user-attachments/assets/694af971-7fab-4e64-b593-1937c6809e06" />
+
 **PERLE** (**P**olicy-**E**nhanced **R**einforcement **L**earning Model for *De Novo* RNA D**E**sign)
 
 ## Abstract
@@ -63,7 +65,7 @@ summary = train_and_generate(cfg)
 print(summary)
 ```
 Then:
-```python
+```bash
 python run_1ANR.py
 ```
 
