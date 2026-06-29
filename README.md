@@ -1,14 +1,19 @@
-# Policy-Enhanced Reinforcement Learning Model for *De Novo* RNA Design
-<img width="70%" height="auto" alt="image" src="https://github.com/user-attachments/assets/694af971-7fab-4e64-b593-1937c6809e06" />
+# Policy-Enhanced Reinforcement Learning Model for *de novo* RNA Design
 
-**PERLE** (**P**olicy-**E**nhanced **R**einforcement **L**earning Model for *De Novo* RNA D**E**sign)
+<img width="1299" height="815" alt="image" src="https://github.com/user-attachments/assets/5e781898-9531-45fa-becb-e41091b2c127" />
+
+**PERLE** (**P**olicy-**E**nhanced **R**einforcement **L**earning Model for *de novo* RNA D**E**sign)
 
 ## Abstract
 
 RNA sequence design aims to design RNA sequences that adopt a desired structure, but current methods often depend on thermodynamic folding engines, large training datasets, or fixed secondary-structure assumptions. Here, we developed Perle, a reinforcement learning-based framework for RNA sequence design that learns directly from user-defined target constraints. Perle uses a lightweight neural generator to produce candidate RNA sequences from random latent vectors and optimizes them with rewards based on base-pair satisfaction and sequence diversity. This target-specific strategy allows Perle to explore multiple valid sequences for the same structural target without offline pre-training or folding-engine calls during optimization. We evaluated Perle on small PDB-derived RNAs, CASP15 RNA targets, RNA-protein complex examples, and the QT45 polymerase ribozyme. Perle fully satisfied target base-pair constraints in the small PDB and CASP15 benchmarks, achieved average RMSD values below 5 Å for nine of ten small RNAs, and obtained the lowest average RMSD in four of six CASP15 targets. In the QT45 test, using an AlphaFold 3-derived target reduced the average false-pair count from more than ten to two positions per sequence. These results suggest that Perle provides a fast, flexible, and sequence-diverse framework for computational RNA design and downstream structural screening.
 
-## Features
 
+## Model Architecture
+<img width="1470" height="789" alt="image" src="https://github.com/user-attachments/assets/cdd24200-70a7-4008-b854-3e50904c9945" />
+
+
+## Features
 - Reinforcement learning-based RNA sequence generation
 - Target-specific optimization without offline pre-training
 - Support for base-pair constraints from dot-bracket structure strings
